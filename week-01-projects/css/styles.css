@@ -1,5 +1,13 @@
 
 
+.intro
+{
+	/* Do ../ to go back out the folder */
+	background-image: url("../img/milkbg.jpg") ;
+/*	background-color: black; */
+	padding-bottom: 400px;
+	background-size: 100% 100%
+}
 body
 {
 /*	background-color: black; */
