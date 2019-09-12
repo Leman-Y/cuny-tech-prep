@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+.red-text {
+  color: red;
+}
+
+.boards { margin: 20px 0; overflow: hidden; }
+.board { border: 5px solid #ccc; float: left; font: 700 24px HelveticaNeue, Helvetica, Arial; margin-right: 20px; padding: 20px; }
+.board.selected { border-color: #3BA8AA; }
