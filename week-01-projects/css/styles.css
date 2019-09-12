@@ -111,10 +111,10 @@ body {
 }
 
 .jumbotron {
-  position: absolute;
   top: 50%;
   left: 50%;
-  transform: translateY(-50%) translateX(-50%);
+  position: absolute;
+  transform: translateY(-50%) translateX(-50%); /* Use this to put it into the center with position absolute */
   background-color: rgba(0,0,0,.6);
   color: #eee;
 }
@@ -142,6 +142,7 @@ body {
 	font-size: 40px;
 }
 
+/* Every row has padding on the bottom */
 .row {
   padding-bottom: 30px;
 }
