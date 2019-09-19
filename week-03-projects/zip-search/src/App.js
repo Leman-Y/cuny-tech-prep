@@ -19,7 +19,8 @@ class App extends Component {
         <div className="App-header">
           <h2>Zip Code Search</h2>
         </div>
-        <ZipSearchField />
+          <h3>Zip Code:</h3>
+        <ZipSearchField/>
         <div>
           <City />
           <City />
