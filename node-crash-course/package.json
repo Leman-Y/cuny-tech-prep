@@ -1,0 +1,25 @@
+{
+  "name": "crash-course",
+  "version": "1.0.0",
+  "description": "Node crash course youtube.com traversy media",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leman-Y/cuny-tech-prep.git"
+  },
+  "author": "Leman Yan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Leman-Y/cuny-tech-prep/issues"
+  },
+  "homepage": "https://github.com/Leman-Y/cuny-tech-prep#readme",
+  "dependencies": {
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
+}
