@@ -1,3 +1,5 @@
+//You can deploy node.js app to internet with heroku
+
 //import person from ./person
 
 
@@ -27,6 +29,7 @@ const path = require('path');
 const fs = require('fs');
 
 //Create a server that gets a request and response
+//Serving the response and learning about http
 const server = http.createServer((req,res) => {
 	//console.log(req.url);
 	/*
@@ -103,7 +106,7 @@ const server = http.createServer((req,res) => {
 	fs.readFile(filePath, (err,content) => {
 		if(err){
 			if(err.code == 'ENOENT'){
-				//Page not found
+				//Page not found. Page doesnt exist so go to 404 page
 				fs.readFile(path.join(__dirname, 'public', '404.html'), (err,content) => {
 				 	res.writeHead(200, { 'Content-Type': 'text/html'});
 				 	res.end(content, 'utf8');
@@ -125,6 +128,8 @@ const server = http.createServer((req,res) => {
 	});
 
 });
+
+//You can go to dev tools on chrome, refresh, go to names, localhost, and headers to see the content type, request method, etc
 
 //If not found then run on 5000
 const PORT = process.env.PORT || 5000; //Whatever your host decides in the environment variable
