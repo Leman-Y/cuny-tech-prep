@@ -26,6 +26,7 @@ const http = require('http');
 const path = require('path');
 const fs = require('fs');
 
+//Create a server that gets a request and response
 const server = http.createServer((req,res) => {
 	//console.log(req.url);
 	/*
@@ -78,6 +79,7 @@ const server = http.createServer((req,res) => {
 	let contentType = 'text/html';
 
 	//Check ext and set content type
+	//File types you want to handle for this server
 	switch(extname){
 	    case ".js":
 	      contentType = "text/javascript";
@@ -95,6 +97,33 @@ const server = http.createServer((req,res) => {
 	      contentType = "image/jpg";
 	      break;
 	}
+
+	//Read file
+	//File system module
+	fs.readFile(filePath, (err,content) => {
+		if(err){
+			if(err.code == 'ENOENT'){
+				//Page not found
+				fs.readFile(path.join(__dirname, 'public', '404.html'), (err,content) => {
+				 	res.writeHead(200, { 'Content-Type': 'text/html'});
+				 	res.end(content, 'utf8');
+				 } )
+			}
+			else
+			{
+				//Some server error
+				res.writeHead(500);
+				res.end(`Server Error: ${err.code}`);
+			}
+		} 
+		else
+		{
+			//Success
+			res.writeHead(200, { 'Content-Type': contentType});
+			res.end(content, 'utf8');
+		}
+	});
+
 });
 
 //If not found then run on 5000
