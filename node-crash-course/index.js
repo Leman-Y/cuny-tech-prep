@@ -28,6 +28,7 @@ const fs = require('fs');
 
 const server = http.createServer((req,res) => {
 	//console.log(req.url);
+	/*
 	if(req.url === `/`){ //You know that is the index page with /
 		fs.readFile(path.join(__dirname, 'public', 'index.html'), (err,content) => {
 			if(err) throw err; 
@@ -38,7 +39,7 @@ const server = http.createServer((req,res) => {
 
 		//nodemon will help
 	}
-	/*
+	
 	if(req.url === `/about`){ //You know that is the index page with /
 		fs.readFile(path.join(__dirname, 'public', 'about.html'), (err,content) => {
 			if(err) throw err; 
@@ -49,8 +50,10 @@ const server = http.createServer((req,res) => {
 
 		//nodemon will help
 	}
-	*/
-	//
+	
+	//Usually fetch data from a database and serve that
+	//If you want to build a restapi you would do this with just node but people do it with express
+	//This is not efficient. For all pages you would have to do this and you need to include images and css
 	if(req.url === '/api/users'){
 		const users = [
 			{name: 'Bob Smith', age: 40},
@@ -58,7 +61,39 @@ const server = http.createServer((req,res) => {
 
 		];
 		res.writeHead(200, {'Content-Type': 'application/json'});
+		//The JSON.stringify() method converts a JavaScript object or value to a JSON string
 		res.end(JSON.stringify(users));
+	}
+	*/
+
+	//Build file path
+	let filePath = path.join(__dirname, 'public', req.url === '/' ? 'index.html' : req.url);
+	//console.log(filePath);
+	//res.end();
+
+	//Extension of file
+	let extname = path.extname(filePath);
+
+	//Initial content type
+	let contentType = 'text/html';
+
+	//Check ext and set content type
+	switch(extname){
+	    case ".js":
+	      contentType = "text/javascript";
+	      break;
+	    case ".css":
+	      contentType = "text/css";
+	      break;
+	    case ".json":
+	      contentType = "application/json";
+	      break;
+	    case ".png":
+	      contentType = "image/png";
+	      break;
+	    case ".jpg":
+	      contentType = "image/jpg";
+	      break;
 	}
 });
 
