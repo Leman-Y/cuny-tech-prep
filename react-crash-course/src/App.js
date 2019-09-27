@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import Todos from './components/Todos'
+import Header from './components/layout/Header'
 
 class App extends Component {
   state = {
@@ -34,15 +35,22 @@ class App extends Component {
     }) });
   }
 
+  //Delete Todo
+  delTodo = (id) => {
+    //Spread operator ... removes the todo but when you refresh it goes back because it is not a server
+    this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)]})
+  }
+
   render() {
     console.log(this.state.todos);
     return (
       //Returns jsx, can use vanilla javascript but will be harder
       //Add component like a custom tag
       //Need to climb the tree for markComplete to app.js's state
+      //<h1>App bruh</h1>
       <div className="App">
-        <h1>App bruh</h1>
-        <Todos todos={this.state.todos} markComplete={this.markComplete}/>  
+        <Header />
+        <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/>  
       </div>
     );
   }
