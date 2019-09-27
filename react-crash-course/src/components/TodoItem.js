@@ -16,7 +16,8 @@ export class TodoItem extends Component {
 			}
 		}
 		*/
-		//Use ternary operator
+		//Use ternary operator 
+		//Dynamic styling
 		return {
 			background: '#f4f4f4',
 			padding: '10px',
@@ -26,15 +27,21 @@ export class TodoItem extends Component {
 		}
 	}
 
-		//Double braces for inline css
-		//<div style={{ backgroundColor: '#f4f4f4' }} >
+	/*
+	markComplete = (e) => {
+		console.log(this.props);
+	}
+	*/
 
+	//Double braces for inline css
+	//<div style={{ backgroundColor: '#f4f4f4' }} >
 	render(){
+		const { id,title } = this.props.todo;
 		return (
 			<div style={this.getStyle()}>
 				<p>
-					<input type="checkbox" />
-					{ this.props.todo.title }
+					<input type="checkbox" onChange={this.props.markComplete.bind(this, id)} />{' '}
+					{ title }
 				</p>
 			</div>
 		)

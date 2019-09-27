@@ -24,14 +24,25 @@ class App extends Component {
     ]
   }      
 
+//Toggle Complete
+  markComplete = (id) => {
+    this.setState({todos: this.state.todos.map(todo => {
+      if(todo.id === id){
+        todo.completed = !todo.completed //toggle
+      }
+      return todo;
+    }) });
+  }
+
   render() {
     console.log(this.state.todos);
     return (
       //Returns jsx, can use vanilla javascript but will be harder
       //Add component like a custom tag
+      //Need to climb the tree for markComplete to app.js's state
       <div className="App">
         <h1>App bruh</h1>
-        <Todos todos={this.state.todos} />  
+        <Todos todos={this.state.todos} markComplete={this.markComplete}/>  
       </div>
     );
   }
