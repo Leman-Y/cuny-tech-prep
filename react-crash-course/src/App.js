@@ -14,7 +14,7 @@ class App extends Component {
       {
         id: 2,
         title: 'Dinner with wife',
-        completed: false
+        completed: true
       },
       {
         id: 3,
@@ -25,13 +25,13 @@ class App extends Component {
   }      
 
   render() {
-    //console.log(this.state.todos)
+    console.log(this.state.todos);
     return (
       //Returns jsx, can use vanilla javascript but will be harder
       //Add component like a custom tag
       <div className="App">
-        <h1>App</h1>
-        <Todos />  
+        <h1>App bruh</h1>
+        <Todos todos={this.state.todos} />  
       </div>
     );
   }
