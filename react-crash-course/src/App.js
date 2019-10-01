@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
-import Todos from './components/Todos'
-import Header from './components/layout/Header'
+import Todos from './components/Todos';
+import Header from './components/layout/Header';
+import AddTodo from './components/AddTodo';
 
 class App extends Component {
   state = {
@@ -49,8 +50,11 @@ class App extends Component {
       //Need to climb the tree for markComplete to app.js's state
       //<h1>App bruh</h1>
       <div className="App">
-        <Header />
-        <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/>  
+        <div className="container">
+          <Header />
+          <AddTodo />
+          <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/>  
+        </div>
       </div>
     );
   }
