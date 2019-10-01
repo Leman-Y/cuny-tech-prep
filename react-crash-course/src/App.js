@@ -13,6 +13,13 @@ import axios from 'axios'
 
 //import uuid to generate random ids
 
+/*
+  Create production build w npm run build
+  -create extra folder with static folder 
+  -This is what is actually going to be run in the browser
+  -Loaded by react front end dev server w/ npm start
+*/
+
 class App extends Component {
   state = {
     todos: [
