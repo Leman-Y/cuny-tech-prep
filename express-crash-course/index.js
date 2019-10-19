@@ -2,9 +2,16 @@
 
 const express = require('express');
 const path = require('path');
+const members = require('./Members');
+const logger = require('./middleware/logger');
 //Need to import modules like c++ libraries
 
 const app = express();
+
+
+
+//Init middleware
+//app.use(logger);
 
 /*
 app.get('/', (req,res) => {
@@ -13,30 +20,16 @@ app.get('/', (req,res) => {
 });
 */
 
-const members = [
-  {
-    id: 1,
-    name: 'John Doe',
-    email: 'john@gmail.com',
-    status: 'active'
-  },
-  {
-    id: 2,
-    name: 'Bob Williams',
-    email: 'bob@gmail.com',
-    status: 'inactive'
-  },
-  {
-    id: 3,
-    name: 'Shannon Jackson',
-    email: 'shannon@gmail.com',
-    status: 'active'
-  }
-];
+
 
 //Gets All Members 
 app.get('/api/members', (req,res) => res.json(members));
 
+//Get Single Member
+app.get('/api/members/:id', (req,res) => {
+	//res.send(req.params.id);
+	res.json(members.filter(member => member.id === parseInt(req.params.id)) );
+});
 
 //Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
