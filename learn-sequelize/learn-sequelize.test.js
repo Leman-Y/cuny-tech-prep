@@ -25,6 +25,7 @@ describe('2) Model Usage', () => {
     expect(genres.length).toBe(4);
   })
 
+
   test('insert new Movie', async () => {
     await insertNewMovie();
     movies = await Movie.findAll();
@@ -34,7 +35,7 @@ describe('2) Model Usage', () => {
   test('get movie ID=2', async () => {
     expect(await getMovieWithId2()).toBe("Men in Black II");
   })
-
+/*
   test('get all actors', async () => {
     expect(await getAllActors()).toEqual(["Will Smith", "Rosario Dawson", "Robert Downey Jr."]);
   })
@@ -66,6 +67,7 @@ describe('2) Model Usage', () => {
         expect(movies.length).toBe(1);
       })
   })
-
+*/
   
+
 })
