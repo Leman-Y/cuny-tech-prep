@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 
-
+//Source code for React.Component: https://github.com/facebook/react/blob/master/packages/react/src/ReactBaseClasses.js?source=post_page-----ece595fe9e55----------------------
 class Square extends React.Component {
+  //onClick={function() {alert('click')}}
+  //Arrow function - React will only call this function after a click. Forgetting ()=> and writing onCLick={alert('click')} is a common mistake and will fire alert everytime the component rerenders
   render() {
     return (
-      <button className="square">
+      <button className="square" onClick={() => alert('click')}> 
         {/* TODO */}
+        {this.props.value}
       </button>
     );
   }
@@ -16,7 +19,8 @@ class Square extends React.Component {
 
 class Board extends React.Component {
   renderSquare(i) {
-    return <Square />;
+    return <Square value={i} />; //pass prop called value to the square
+    //You create nine instances of Square class. Then for each square you create, you pass in an integer. That integer will be displayed on the board.
   }
 
   //Will render nine squares 
