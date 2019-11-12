@@ -3,23 +3,64 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 
+/*
+Notes:
+- You can use React DevTools in chrome, inspect to open dev tools F12, and React Tabs (Components and Profiler) will appear as last tabs to the right. USe Componenets to inspect component tree
+*/
+
 //Source code for React.Component: https://github.com/facebook/react/blob/master/packages/react/src/ReactBaseClasses.js?source=post_page-----ece595fe9e55----------------------
 class Square extends React.Component {
+  /*
+  constructor(props)
+  {
+    super(props);
+    this.state = {
+      value: null, 
+    }
+  }
+  */
   //onClick={function() {alert('click')}}
   //Arrow function - React will only call this function after a click. Forgetting ()=> and writing onCLick={alert('click')} is a common mistake and will fire alert everytime the component rerenders
+  /*
+        //onClick={() => this.setState({value: 'X'})}> 
+        //{this.state.value}
+  */
   render() {
     return (
-      <button className="square" onClick={() => alert('click')}> 
-        {/* TODO */}
+      <button 
+        className="square" 
+        onClick = {() => this.props.onClick()}
+      >
         {this.props.value}
-      </button>
+      </button>  
     );
   }
 }
 
 class Board extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      squares: Array(9).fill(null),
+    };
+  }
+
+  handleCLick(i){
+    const squares = this.state.squares.slice(); //Why do you need to add slice() when it returns the same thing? We are creating a copy to modify instead of modifying existing array
+    //const squares = this.state.squares;
+    squares[i] = 'X';
+    this.setState({squares: squares});
+  }
+
+  //Pass down value and onClick props from Board to Square
   renderSquare(i) {
-    return <Square value={i} />; //pass prop called value to the square
+    return (
+      <Square 
+      value = {this.state.squares[i]} 
+      onClick = {() => this.handleCLick(i)}
+      />
+      )
+    //<Square value={i} />; //pass prop called value to the square
     //You create nine instances of Square class. Then for each square you create, you pass in an integer. That integer will be displayed on the board.
   }
 
