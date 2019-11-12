@@ -9,8 +9,9 @@ Notes:
 */
 
 //Source code for React.Component: https://github.com/facebook/react/blob/master/packages/react/src/ReactBaseClasses.js?source=post_page-----ece595fe9e55----------------------
+/*
 class Square extends React.Component {
-  /*
+
   constructor(props)
   {
     super(props);
@@ -18,13 +19,13 @@ class Square extends React.Component {
       value: null, 
     }
   }
-  */
+  
   //onClick={function() {alert('click')}}
   //Arrow function - React will only call this function after a click. Forgetting ()=> and writing onCLick={alert('click')} is a common mistake and will fire alert everytime the component rerenders
-  /*
+  
         //onClick={() => this.setState({value: 'X'})}> 
         //{this.state.value}
-  */
+  
   render() {
     return (
       <button 
@@ -36,20 +37,37 @@ class Square extends React.Component {
     );
   }
 }
+*/
+
+function Square(props){
+  return(
+    <button className = "square" onClick={props.onClick}>
+      {props.value}
+    </button>
+  );
+}
 
 class Board extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       squares: Array(9).fill(null),
+      xIsNext: true,
     };
   }
 
   handleCLick(i){
     const squares = this.state.squares.slice(); //Why do you need to add slice() when it returns the same thing? We are creating a copy to modify instead of modifying existing array
     //const squares = this.state.squares;
-    squares[i] = 'X';
-    this.setState({squares: squares});
+    if(calculateWinner(squares) || squares[i]) //If there is a winner or square if full dont do anything
+    {
+      return; 
+    }
+    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    this.setState({
+      squares: squares,
+      xIsNext: !this.state.xIsNext,
+    });
   }
 
   //Pass down value and onClick props from Board to Square
@@ -66,7 +84,13 @@ class Board extends React.Component {
 
   //Will render nine squares 
   render() {
-    const status = 'Next player: X';
+    const winner = calculateWinner(this.state.squares);
+    let status;
+    if(winner){
+      status = 'Winner: ' + winner;
+    } else {
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    }
 
     return (
       <div>
@@ -92,6 +116,16 @@ class Board extends React.Component {
 }
 
 class Game extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      history: [{
+        squares: Array(9).fill(null),
+      }],
+      xIsNext: true,
+    }
+  }
+
   render() {
     return (
       <div className="game">
@@ -106,6 +140,28 @@ class Game extends React.Component {
     );
   }
 }
+
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}
+
+
 
 // ========================================
 
