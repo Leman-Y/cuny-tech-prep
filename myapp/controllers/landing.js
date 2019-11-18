@@ -2,6 +2,8 @@
 const models = require('../models');
 //allow to get sequelize methods
 
+//Use controllers for handler logic for routers
+
 exports.get_landing = function(req, res, next) {
   res.render('landing', { title: 'Express' });
 }
