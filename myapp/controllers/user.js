@@ -31,6 +31,7 @@ const generateHash = function(password) {
 
 //Create new user and save it to the database 
 exports.signup = function(req, res, next) {
+	//Validate user and password 
 	const newUser = models.User.build({
 		email: req.body.email,
 		password: generateHash(req.body.password)
