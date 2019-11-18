@@ -1,3 +1,7 @@
+/*
+Bugs:
+- when you sign up with an email that is already signed up. That will give you an error
+*/
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
