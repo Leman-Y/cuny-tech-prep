@@ -5,6 +5,15 @@ html(lang='en')
   include common/head.jade
   +head("Starter MVP")
   body
+    header 
+      include common/navbar.jade
+      +navbar()
+      .container
+        .row
+          .col-md-6
+            h1.mb-3 Minimum Viable Landing Page
+            p.lead This tutorial teaches you how to build a NodeJS web application covering key topics.
+            p.lead.mb-4 Learn how to launch a landing page and start collecting sales leads.          	
     h1= title
     p Welcome to #{title}
     form(action="/",method="POST")
