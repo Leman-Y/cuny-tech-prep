@@ -20,7 +20,7 @@ exports.submit_lead = function(req, res, next) {
 //findall defined by sequelize
 exports.show_leads = function(req, res, next) {
 	return models.Lead.findAll().then(leads => {
-	  res.render('landing', { title: 'Express', leads: leads });
+	  res.render('lead/leads', { title: 'Express', leads: leads });
 	})
 }
 
@@ -31,7 +31,7 @@ exports.show_lead = function(req, res, next) {
 			id : req.params.lead_id
 		}
 	}).then(lead => {
-		res.render('lead', { lead : lead });
+		res.render('lead/lead', { lead : lead });
 	})
 }
 
