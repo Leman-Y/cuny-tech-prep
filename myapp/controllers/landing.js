@@ -5,7 +5,7 @@ const models = require('../models');
 //Use controllers for handler logic for routers
 
 exports.get_landing = function(req, res, next) {
-  res.render('landing', { title: 'Express' });
+  res.render('landing', { title: 'Express', user: req.user }); //If there is an active session going on
 }
 
 exports.submit_lead = function(req, res, next) {
