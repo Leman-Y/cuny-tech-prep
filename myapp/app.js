@@ -3,6 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+let passport = require('passport');
+let session = require('express-session');
+
+require('./passport_setup')(passport);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -18,6 +22,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({ secret: 'our new secret'}));
+app.use(passport.initialize());
+app.use(passport.session());
+//app.js goes line by line in sequential order
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
