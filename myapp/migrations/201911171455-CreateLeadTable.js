@@ -1,3 +1,4 @@
+//Create User model and migration
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
